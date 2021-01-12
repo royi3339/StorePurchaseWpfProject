@@ -31,7 +31,8 @@ namespace BL
         static string ApplicationName = "Drive API .NET Quickstart";
         //public List<Item> currentItems = new List<Item>();
         //public  List<Result> lst = new List<Result>();
-        public static ObservableCollection<Result> lstRes { get; set; } // = new ObservableCollection<Result>();
+        public ObservableCollection<int> lstRes { get; set; } // = new ObservableCollection<Result>();
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -63,7 +64,7 @@ namespace BL
         public void AuthenticateAndListContent()
         {
             count = 0;
-            lstRes = new ObservableCollection<Result>();
+            lstRes = new ObservableCollection<int>();
 
             UserCredential credential;
 
@@ -110,6 +111,8 @@ namespace BL
             //    }
             //}
             Result res;
+            int rres;
+            bool b;
             foreach (var file in files)
             {
                 res = null;
@@ -119,7 +122,19 @@ namespace BL
                     //{
                     res = DownloadFile(service, file);
                     if (res != null)
-                        lstRes.Add(res);
+                    {
+                        //rres = int.Parse(res.ToString());
+                        b = int.TryParse(res.ToString(), out rres);
+
+                        if (b)
+                        {
+                            lstRes.Add(rres);
+                        }
+                        else
+                        {
+                            count++;
+                        }
+                    }
                     else
                         count++;
                     //DownloadFile(service, file, "items/" + file.Name + file.Id + ".jpg");  

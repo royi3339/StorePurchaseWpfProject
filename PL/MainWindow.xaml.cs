@@ -16,6 +16,8 @@ using BL;
 using BE;
 using System.Collections.ObjectModel;
 using ZXing;
+using System;
+using System.IO;
 
 
 namespace PL
@@ -26,18 +28,44 @@ namespace PL
     public partial class MainWindow : Window
     {
         MyQRScanner MY = new MyQRScanner();
+        BL.BL bl = new BL.BL();
+        ObservableCollection<Product> prodLst;
 
         //public static ObservableCollection<Result> toDeleteIt;// { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = MY;            
+            // DataContext = prodLst;     
+            DataContext = bl;     
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //try
+            //{
+            //    Product p = new Product(1, "milk", "tara", 6, new bool[4] { false, false, false, true }, 1.1, "milk.jpg");
+            //    bl.addProduct(p);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
+
+            //try
+            //{
+            //    Product pp = new Product(2, "bamba", "osem", 200, new bool[4] { false, false, false, false }, 0.06, "bamba.png");
+            //    bl.addProduct(pp);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
+
             MY.AuthenticateAndListContent();
-            listOfRes.ItemsSource = MyQRScanner.lstRes;
+            prodLst = bl.convertIdToProduct((MY.lstRes));
+
+            listOfRes.ItemsSource = prodLst;
+            string path = Directory.GetCurrentDirectory();
         }
     }
 }
