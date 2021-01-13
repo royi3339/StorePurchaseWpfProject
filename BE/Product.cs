@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 
 
-namespace BE
+namespace BE 
 {
-    public class Product : INotifyPropertyChanged
+    public class Product : INotifyPropertyChanged  
     {
         private int _Id;
         public int id 
