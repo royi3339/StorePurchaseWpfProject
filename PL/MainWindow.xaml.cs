@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using BL;
 using BE;
 using System.Collections.ObjectModel;
-using ZXing;
+using ZXing;//3339
 using System.IO;
 
 
