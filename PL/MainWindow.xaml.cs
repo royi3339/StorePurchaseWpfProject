@@ -16,7 +16,6 @@ using BL;
 using BE;
 using System.Collections.ObjectModel;
 using ZXing;
-using System;
 using System.IO;
 
 

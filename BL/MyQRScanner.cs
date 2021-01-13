@@ -99,7 +99,7 @@ namespace BL
             IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute()
                 .Files;
             Console.WriteLine("Files:");
-            string id = "";
+            //string id = "";
             //if (files != null && files.Count > 0)
             //{
             //    foreach (var file in files)
@@ -204,7 +204,7 @@ namespace BL
                 return reader.Decode((Bitmap)res);
                 //string result = resultQR.ToString() + "\n" + fileName;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //MessageBox.Show("cloudn't decode file:" + fileName);
                 //Console.WriteLine("cloudn't decode file #2:" + fileName);
