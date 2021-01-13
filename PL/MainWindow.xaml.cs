@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+using System.Windows.Data;//3339
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using BL;
 using BE;
 using System.Collections.ObjectModel;
-using ZXing;//3339
+using ZXing;
 using System.IO;
 
 
@@ -26,16 +26,22 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        MyQRScanner MY = new MyQRScanner();
-        BL.BL bl = new BL.BL();
+        IBL myBL = oneBL.GetBL();
         ObservableCollection<Product> prodLst;
 
+        QRScanner myQRScanner;
+        int count;
+        
         //public static ObservableCollection<Result> toDeleteIt;// { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            // DataContext = prodLst;     
-            DataContext = bl;     
+            // DataContext = prodLst;   
+            myQRScanner = myBL.getQRScanner();
+            count = myQRScanner.count;
+            DataContext = count;
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,12 +65,13 @@ namespace PL
             //{
             //    MessageBox.Show(ex.ToString());
             //}
-
-            MY.AuthenticateAndListContent();
-            prodLst = bl.convertIdToProduct((MY.lstRes));
+            myQRScanner.AuthenticateAndListContent();
+            prodLst = myBL.convertIdToProduct((myQRScanner.lstRes));
 
             listOfRes.ItemsSource = prodLst;
             string path = Directory.GetCurrentDirectory();
+
+            count++;
         }
     }
 }

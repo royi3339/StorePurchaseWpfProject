@@ -15,17 +15,12 @@ using System.Collections.ObjectModel;
 
 namespace DAL
 {
-    //   asdfghjkl
-    //public class Class1
-    //{
-    //}
-
-    public class Dal_XML_imp //: Idal
+    public class DalXMLimp : IDal
     {
         private const string productPath = @"productXml.xml";
         private XElement productRoot;
 
-        public Dal_XML_imp()
+        public DalXMLimp()
         {
             bool f = File.Exists(productPath);
             if (!File.Exists(productPath))
@@ -80,14 +75,14 @@ namespace DAL
             SaveToXML(unitslist, productPath);
         }
 
-        public static void SaveToXML<T>(T source, string path)
+        private void SaveToXML<T>(T source, string path)
         {
             FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
             XmlSerializer xmlSer = new XmlSerializer(source.GetType());
             xmlSer.Serialize(file, source);
             file.Close();
         }
-        public static T LoadFromXML<T>(string path)
+        private T LoadFromXML<T>(string path)
         {
 
             FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read);

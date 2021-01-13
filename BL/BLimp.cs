@@ -9,18 +9,19 @@ using System.Collections.ObjectModel;
 
 namespace BL
 {
-    public class BL 
+    public class BLimp : IBL
     {
-        private Dal_XML_imp d = new Dal_XML_imp(); ////////////////////////////////////////////////////////////////
+        IDal myDAL = oneDAL.GetDal();
+        public QRScanner myQRScanner = new QRScanner();
 
         public void addProduct(Product unit)
         {
-            d.addProduct(unit);
+            myDAL.addProduct(unit);
         }
 
         public ObservableCollection<Product> convertIdToProduct(ObservableCollection<int> lst)
         {
-            List<Product> prod = d.getAllProducts().ToList();
+            List<Product> prod = myDAL.getAllProducts().ToList();
             ObservableCollection<Product> newProd = new ObservableCollection<Product>();
             foreach (int a in lst)
             {
@@ -29,6 +30,11 @@ namespace BL
             return newProd;
 
             //return lst.Select(id => prod[id-1] ).ToList();
+        }
+
+        public QRScanner getQRScanner()
+        {
+            return myQRScanner;
         }
     }
 }

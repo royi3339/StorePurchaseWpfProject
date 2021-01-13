@@ -19,7 +19,7 @@ using System.Collections.ObjectModel;
 namespace BL
 {
     // akuo3339   fhhnf
-    public class MyQRScanner : INotifyPropertyChanged
+    public class QRScanner : INotifyPropertyChanged
     {
 
         // AuthenticateAndListContent();
@@ -157,37 +157,10 @@ namespace BL
             {
                 if(progress.Status == Google.Apis.Download.DownloadStatus.Completed)
                     h = QRscan(stream, file.Name);
-                //switch (progress.Status)
-                //{
-                //    case Google.Apis.Download.DownloadStatus.Downloading:
-                //        {
-                //            //Console.WriteLine( (string)progress.BytesDownloaded.ToString() + "Bytes downloaded");
-                //            break;
-                //        }
-                //    case Google.Apis.Download.DownloadStatus.Completed:
-                //        {
-                //            //Console.WriteLine("Download complete.");
-                //            //SaveStream(stream, saveTo);
-                //            return QRscan(stream, file.Name);
-                //            //break;
-                //        }
-                //    case Google.Apis.Download.DownloadStatus.Failed:
-                //        {
-                //            //Console.WriteLine( "Download failed.");
-                //            break;
-                //        }
-                //}                
             };
             request.Download(stream);
             return h;
         }
-        //private  void SaveStream(System.IO.MemoryStream stream, string saveTo)
-        //{
-        //    using (System.IO.FileStream file = new System.IO.FileStream(saveTo, System.IO.FileMode.Create, System.IO.FileAccess.Write))
-        //    {
-        //        stream.WriteTo(file);
-        //    }
-        //}
 
         private Result QRscan(System.IO.MemoryStream stream, string fileName)
         {
@@ -206,8 +179,6 @@ namespace BL
             }
             catch (Exception)
             {
-                //MessageBox.Show("cloudn't decode file:" + fileName);
-                //Console.WriteLine("cloudn't decode file #2:" + fileName);
                 return null;
             }
         }

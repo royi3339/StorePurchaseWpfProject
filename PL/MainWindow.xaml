@@ -27,7 +27,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label Content="{Binding count}" HorizontalAlignment="Left" Margin="185,53,0,0" VerticalAlignment="Top" Height="36" Width="95"/>
+        <Label Content="{Binding}" HorizontalAlignment="Left" Margin="185,53,0,0" VerticalAlignment="Top" Height="36" Width="95"/>
 
     </Grid>
 </Window>

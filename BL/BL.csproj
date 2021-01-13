@@ -72,8 +72,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL.cs" />
-    <Compile Include="MyQRScanner.cs" />
+    <Compile Include="BLimp.cs" />
+    <Compile Include="IBL.cs" />
+    <Compile Include="QRScanner.cs" />
+    <Compile Include="oneBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
