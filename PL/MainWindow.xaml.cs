@@ -30,7 +30,6 @@ namespace PL
         ObservableCollection<Product> prodLst;
 
         QRScanner myQRScanner;
-        int count;
         
         //public static ObservableCollection<Result> toDeleteIt;// { get; set; }
         public MainWindow()
@@ -38,8 +37,7 @@ namespace PL
             InitializeComponent();
             // DataContext = prodLst;   
             myQRScanner = myBL.getQRScanner();
-            count = myQRScanner.count;
-            DataContext = count;
+            DataContext = myQRScanner;
 
 
         }
@@ -65,13 +63,19 @@ namespace PL
             //{
             //    MessageBox.Show(ex.ToString());
             //}
-            myQRScanner.AuthenticateAndListContent();
+
+            //myQRScanner.AuthenticateAndListContent();
+            myQRScanner.lstRes = new ObservableCollection<int>();
+            for (int i = 1; i < 7; i++)
+            {
+                myQRScanner.lstRes.Add(i);
+            }
+
             prodLst = myBL.convertIdToProduct((myQRScanner.lstRes));
 
             listOfRes.ItemsSource = prodLst;
-            string path = Directory.GetCurrentDirectory();
+            //string path = Directory.GetCurrentDirectory();
 
-            count++;
         }
     }
 }

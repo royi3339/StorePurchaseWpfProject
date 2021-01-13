@@ -154,6 +154,33 @@
     <Resource Include="bamba.png" />
     <Resource Include="milk.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="apple.png" />
+    <Resource Include="bread.png" />
+    <Resource Include="cheese.png" />
+    <Resource Include="Chicken thighs.png" />
+    <Resource Include="Cigarettes.png" />
+    <Resource Include="cucumber.png" />
+    <Resource Include="eggs.png" />
+    <Resource Include="fish.png" />
+    <Resource Include="green.png" />
+    <Resource Include="hamburger.png" />
+    <Resource Include="juice.png" />
+    <Resource Include="meat.png" />
+    <Resource Include="pan.png" />
+    <Resource Include="pizza.png" />
+    <Resource Include="salt.png" />
+    <Resource Include="Saturated fat.png" />
+    <Resource Include="Soap.png" />
+    <Resource Include="sodium.png" />
+    <Resource Include="sugar health.png" />
+    <Resource Include="sugar.png" />
+    <Resource Include="Toilet Paper.png" />
+    <Resource Include="Tomato.png" />
+    <Resource Include="vodka.png" />
+    <Resource Include="water.png" />
+    <Resource Include="yarmulke.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
