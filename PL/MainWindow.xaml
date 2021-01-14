@@ -18,6 +18,12 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
+    
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -64,16 +70,16 @@
                                         <TextBlock Text= "{Binding manufacturer}" HorizontalAlignment="Left"/>
                                         <TextBlock Text= "{Binding cost}"><Run Text="₪"/></TextBlock>
 
-                                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="100">
+                                        <Grid HorizontalAlignment="Center" Width="100" Margin="0,20,0,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Image Source="sugar health.png"/>
-                                            <Image Source="sodium.png" Grid.Column="1"/>
-                                            <Image Source="Saturated fat.png" Grid.Column="2"/>
-                                            <Image Source="green.png" Grid.Column="1"/>
+                                            <Image Visibility="{Binding healthRecom[0], Converter={StaticResource VisibleIfTrueConverter}}" Source="sodium.png"/>
+                                            <Image Visibility="{Binding healthRecom[1], Converter={StaticResource VisibleIfTrueConverter}}" Source="sugar health.png" Grid.Column="1"/>
+                                            <Image Visibility="{Binding healthRecom[2], Converter={StaticResource VisibleIfTrueConverter}}" Source="Saturated fat.png" Grid.Column="2"/>
+                                            <Image Visibility="{Binding healthRecom[3], Converter={StaticResource VisibleIfTrueConverter}}" Source="green.png" Grid.Column="1"/>
 
                                         </Grid>
                                     </StackPanel>
