@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:PL"
     
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-
     
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="PL.MainWindow"   
         mc:Ignorable="d"
@@ -17,14 +16,11 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
-    
+        FontFamily="{DynamicResource MaterialDesignFont}">    
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
-    </Window.Resources>
-    
-    
-    <Grid>
+    </Window.Resources>   
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
@@ -32,15 +28,13 @@
         <Button x:Name="startB" Content="start" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
         <Label Content="{Binding count}" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Height="36" Width="95"/>
-
         <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFF1F1F1" Grid.Column="1">
-
             <StackPanel Margin="20 0">
                 <ItemsControl x:Name="listOfRes" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <materialDesign:Card Margin="10" Width="245" Height="160" UniformCornerRadius="5">
-                                <Grid>
+                                <Grid x:Name="productGrid">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
@@ -52,9 +46,8 @@
                                         <Border.Background>
                                             <ImageBrush ImageSource="{Binding imagePath}"/>
                                         </Border.Background>
-                                    </Border>
-                                    
-                                    <Grid HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Top" Margin="0,110,0,0" >
+                                    </Border>                                    
+                                    <Grid x:Name="numericUpDownGrid" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Top" Margin="0,110,0,0" >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
@@ -63,14 +56,12 @@
                                         <Button Content="-" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="50" Width="50" Click="minosButton"/>
                                         <TextBox HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding amount}" VerticalAlignment="Stretch"  Grid.Column="1"/>
                                         <Button  Content="+" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="2" Height="50" Width="50" Click="plusButton"/>
-
                                     </Grid>
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text= "{Binding name}"/>
                                         <TextBlock Text= "{Binding manufacturer}" HorizontalAlignment="Left"/>
                                         <TextBlock Text= "{Binding cost}"><Run Text="₪"/></TextBlock>
-
-                                        <Grid HorizontalAlignment="Center" Width="100" Margin="0,20,0,0">
+                                        <Grid x:Name="stickersGrid" HorizontalAlignment="Center" Width="100" Margin="0,20,0,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -80,7 +71,6 @@
                                             <Image Visibility="{Binding healthRecom[1], Converter={StaticResource VisibleIfTrueConverter}}" Source="sugar health.png" Grid.Column="1"/>
                                             <Image Visibility="{Binding healthRecom[2], Converter={StaticResource VisibleIfTrueConverter}}" Source="Saturated fat.png" Grid.Column="2"/>
                                             <Image Visibility="{Binding healthRecom[3], Converter={StaticResource VisibleIfTrueConverter}}" Source="green.png" Grid.Column="1"/>
-
                                         </Grid>
                                     </StackPanel>
                                 </Grid>

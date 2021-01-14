@@ -13,6 +13,11 @@ namespace BE
     [Serializable]
     public class Product : INotifyPropertyChanged  
     {
+        
+         /// <summary>
+         /// 
+         /// 
+         /// </summary>
         private int _Id;
         public int id 
         {
