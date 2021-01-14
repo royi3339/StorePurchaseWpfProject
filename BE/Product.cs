@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-
+using System.Xml.Serialization;
 
 namespace BE 
 {
+    [Serializable]
     public class Product : INotifyPropertyChanged  
     {
         private int _Id;
@@ -88,10 +89,29 @@ namespace BE
                 update("imagePath");
             }
         }
-        
+
+        //XmlAttributes attrs = new XmlAttributes();
+        //attrs = new XmlAttributes();
+        //attrs.XmlIgnore = true;
+        [XmlIgnore]
+        private int _Amount = 1;
+        [XmlIgnore]
+        public int amount
+        {
+            get { return _Amount; }
+            set
+            {
+                if (value >= 0)
+                {
+                    _Amount = value;
+                    update("amount");
+                }
+            }
+        }
+
         private void update(string propName)
         {
-            if (PropertyChanged != null)
+            if (PropertyChanged != null)                
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
@@ -99,7 +119,7 @@ namespace BE
 
 
         public Product(int id, string name, string manufacturer, float cost, bool[] healthRecom, double weight, string imagePath)
-        {
+        {                     
             healthRecom = new bool[4];
             this.id = id;
             this.name = name;

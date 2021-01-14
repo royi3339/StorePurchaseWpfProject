@@ -33,8 +33,7 @@ namespace DAL
             //CreateFileProduct();
             // loadProduct();
         }      
-
-
+        
         public void addProduct(Product unit)
         {
             if (IsExistProduct(unit.id))
