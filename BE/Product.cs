@@ -8,17 +8,19 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 
+
 namespace BE 
 {
+    /// <summary>
+    /// Product.
+    /// </summary>
     [Serializable]
     public class Product : INotifyPropertyChanged  
     {
-        
-         /// <summary>
-         /// 
-         /// 
-         /// </summary>
         private int _Id;
+        /// <summary>
+        /// The id of the Product.
+        /// </summary>
         public int id 
         {
             get { return _Id; }
@@ -28,8 +30,11 @@ namespace BE
                 update("id");
             }
         }
-
+                
         private string _Name;
+        /// <summary>
+        /// The name of the Product.
+        /// </summary>   
         public string name 
         {
             get { return _Name; }
@@ -39,8 +44,11 @@ namespace BE
                 update("name");
             }
         }
-
+        
         private string _Manufacturer;
+        /// <summary>
+        /// The manufacturer of the Product.
+        /// </summary>
         public string manufacturer
         {
             get { return _Manufacturer; }
@@ -52,6 +60,9 @@ namespace BE
         }
 
         private float _Cost;
+        /// <summary>
+        /// The cost of the Product.
+        /// </summary>
         public float cost
         {
             get { return _Cost; }
@@ -63,6 +74,9 @@ namespace BE
         }
 
         private bool[] _HealthRecom;
+        /// <summary>
+        /// The health recommendation of the Product.
+        /// </summary>
         public bool[] healthRecom //= new bool[4]    // natran,sugar,shuman ravuy,green
         {
             get { return _HealthRecom; }
@@ -74,6 +88,9 @@ namespace BE
         }
 
         private double _Weight;
+        /// <summary>
+        /// The weight of the Product.
+        /// </summary>
         public double weight
         {
             get { return _Weight; }
@@ -85,6 +102,9 @@ namespace BE
         }
 
         private string _ImagePath;
+        /// <summary>
+        /// The path of the image of the Product.
+        /// </summary>
         public string imagePath
         {
             get { return _ImagePath; }
@@ -95,11 +115,11 @@ namespace BE
             }
         }
 
-        //XmlAttributes attrs = new XmlAttributes();
-        //attrs = new XmlAttributes();
-        //attrs.XmlIgnore = true;
         [XmlIgnore]
         private int _Amount = 1;
+        /// <summary>
+        /// The amount of the Product.
+        /// </summary>
         [XmlIgnore]
         public int amount
         {
@@ -114,15 +134,28 @@ namespace BE
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Updating the value with the "PropertyChanged".
+        /// </summary>
+        /// <param name="propName"> The name of the property that we change. </param>
         private void update(string propName)
         {
             if (PropertyChanged != null)                
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
+        /// <summary>
+        /// the fuul constructor of Product class.
+        /// </summary>
+        /// <param name="id"> The id of the Product. </param>
+        /// <param name="name"> The name of the Product. </param>
+        /// <param name="manufacturer"> The manufacturer of the Product. </param>
+        /// <param name="cost"> The cost of the Product. </param>
+        /// <param name="healthRecom"> The health recommendation of the Product. </param>
+        /// <param name="weight"> The weight of the Product. </param>
+        /// <param name="imagePath"> The path of the image of the Product. </param>
         public Product(int id, string name, string manufacturer, float cost, bool[] healthRecom, double weight, string imagePath)
         {                     
             healthRecom = new bool[4];
@@ -135,8 +168,9 @@ namespace BE
             this.imagePath = imagePath;
         }
 
-        public Product()
-        {
-        }
+        /// <summary>
+        /// A default constructor of Product class.
+        /// </summary>
+        public Product() { }
     }    
 }
