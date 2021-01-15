@@ -9,7 +9,7 @@ namespace DAL
     public class oneDAL
     {
         static IDal instance = null;
-         public static IDal GetDal()
+        public static IDal GetDal()
         {
             if (instance == null)
                 instance = new DalXMLimp();

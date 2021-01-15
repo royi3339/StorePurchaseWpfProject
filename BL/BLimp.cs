@@ -20,14 +20,14 @@ namespace BL
         /// <summary>
         /// Adding a new Product to the Xml Product List.
         /// </summary>
-        /// <param name="p"> the new Product that we want to add. </param>
+        /// <param name="p"> The new Product that we want to add. </param>
         public void addProduct(Product p) { myDAL.addProduct(p); }
 
         /// <summary>
-        /// A method that converting int id of Product to a Product type.
+        /// A method that converting int id ObservableCollection of Product to a Product ObservableCollection type.
         /// </summary>
-        /// <param name="lst"> the List of id that we want to convert. </param>
-        /// <returns> ghgghh </returns>
+        /// <param name="lst"> The ObservableCollection of id that we want to convert. </param>
+        /// <returns> The converted Product ObservableCollection. </returns>
         public ObservableCollection<Product> convertIdToProduct(ObservableCollection<int> lst)
         {
             List<Product> prod = myDAL.getAllProducts().ToList();
@@ -42,12 +42,9 @@ namespace BL
         }
 
         /// <summary>
-        /// 
+        /// Get the QRScanner.
         /// </summary>
-        /// <returns></returns>
-        public QRScanner getQRScanner()
-        {
-            return myQRScanner;
-        }
+        /// <returns> QRScanner. </returns>
+        public QRScanner getQRScanner() { return myQRScanner; }
     }
 }

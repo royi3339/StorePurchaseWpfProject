@@ -18,11 +18,11 @@ using System.Collections.ObjectModel;
 
 namespace BL
 {
-    // akuo3339   fhhnf
+    /// <summary>
+    /// QRScanner.
+    /// </summary>
     public class QRScanner : INotifyPropertyChanged
     {
-
-        // AuthenticateAndListContent();
 
 
         // If modifying these scopes, delete your previously saved credentials
@@ -31,12 +31,15 @@ namespace BL
         static string ApplicationName = "Drive API .NET Quickstart";
         //public List<Item> currentItems = new List<Item>();
         //public  List<Result> lst = new List<Result>();
+        
         public ObservableCollection<int> lstRes { get; set; } // = new ObservableCollection<Result>();
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private static int _Count = 0;
+        /// <summary>
+        /// The num of the uncomplete Product QRcode.
+        /// </summary>
         public int count
         {
             get { return _Count; }
@@ -61,6 +64,10 @@ namespace BL
 
               }   */
 
+        /// <summary>
+        /// The method that active the QRScanner progress, 
+        /// and reloading Products from the Google Drive.
+        /// </summary>
         public void AuthenticateAndListContent()
         {
             count = 0;
@@ -141,9 +148,14 @@ namespace BL
                     //}
                 }
             }
-
-
         }
+
+        /// <summary>
+        /// Downloading the file from the Google Drive.
+        /// </summary>
+        /// <param name="service"> Automatically filled. </param>
+        /// <param name="file"> Automatically filled. </param>
+        /// <returns> Result. </returns>
         private Result DownloadFile(Google.Apis.Drive.v3.DriveService service, Google.Apis.Drive.v3.Data.File file)
         {
             var request = service.Files.Get(file.Id);
@@ -162,6 +174,12 @@ namespace BL
             return h;
         }
 
+        /// <summary>
+        /// The method that creating info from the QRcode that in the Google Drive.
+        /// </summary>
+        /// <param name="stream"> Automatically filled. </param>
+        /// <param name="fileName"> Automatically filled. </param>
+        /// <returns> Result. </returns>
         private Result QRscan(System.IO.MemoryStream stream, string fileName)
         {
             BarcodeReader reader = new BarcodeReader();
