@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Dakirby309-Simply-Styled-Autodesk-Product-Design-Suite.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Apis, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.dll</HintPath>
@@ -57,6 +60,12 @@
     </Reference>
     <Reference Include="Itenso.Windows.Controls.ListViewLayout, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WPF.ListViewLayoutManager.2.0.0\lib\net40\Itenso.Windows.Controls.ListViewLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.7\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -112,6 +121,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\genericCommand.cs" />
+    <Compile Include="model\purchaseProductModel.cs" />
+    <Compile Include="userControls\CardProductUC.xaml.cs">
+      <DependentUpon>CardProductUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\statisticUC.xaml.cs">
+      <DependentUpon>statisticUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="userControls\purchaseProductUC.xaml.cs">
+      <DependentUpon>purchaseProductUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VM\converter.cs" />
+    <Compile Include="VM\mainWindowVM.cs" />
+    <Compile Include="VM\statisticVM.cs" />
+    <Compile Include="VM\viewModel.cs" />
+    <Compile Include="VM\purchaseProductVM.cs" />
+    <Compile Include="VM\ProductVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,6 +150,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="userControls\CardProductUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\statisticUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\purchaseProductUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -166,37 +204,85 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bamba.png" />
-    <Resource Include="milk.jpg" />
+    <Resource Include="Dakirby309-Simply-Styled-Autodesk-Product-Design-Suite.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="apple.png" />
-    <Resource Include="bread.png" />
-    <Resource Include="cheese.png" />
-    <Resource Include="Chicken thighs.png" />
-    <Resource Include="Cigarettes.png" />
-    <Resource Include="cucumber.png" />
-    <Resource Include="eggs.png" />
-    <Resource Include="fish.png" />
-    <Resource Include="hamburger.png" />
-    <Resource Include="juice.png" />
-    <Resource Include="meat.png" />
-    <Resource Include="pan.png" />
-    <Resource Include="pizza.png" />
-    <Resource Include="salt.png" />
-    <Resource Include="Soap.png" />
-    <Resource Include="sugar.png" />
-    <Resource Include="Toilet Paper.png" />
-    <Resource Include="Tomato.png" />
-    <Resource Include="vodka.png" />
-    <Resource Include="water.png" />
-    <Resource Include="yarmulke.png" />
+    <Resource Include="images\apple.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="green.png" />
-    <Resource Include="Saturated fat.png" />
-    <Resource Include="sodium.png" />
-    <Resource Include="sugar health.png" />
+    <Resource Include="images\bamba.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bread.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cheese.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Cigarettes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cucumber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\eggs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\fish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\hamburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\juice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\milk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\pan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\pizza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\salt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Soap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sodium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sugar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Tomato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\vodka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\yarmulke.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Chicken_thighs.png" />
+    <Resource Include="images\Saturated_fat.png" />
+    <Resource Include="images\sugar_health.png" />
+    <Resource Include="images\Toilet_Paper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\tv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\meat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />

@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
-using System.Xml.Serialization;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using static BE.myEnums;
 
 namespace BE 
 {
@@ -15,136 +8,77 @@ namespace BE
     /// Product.
     /// </summary>
     [Serializable]
-    public class Product : INotifyPropertyChanged  
-    {
-        private int _Id;
+    public class Product
+    {      
         /// <summary>
         /// The id of the Product.
         /// </summary>
-        public int id 
-        {
-            get { return _Id; }
-            set
-            {
-                _Id = value;
-                update("id");
-            }
-        }
-                
-        private string _Name;
+        public int id { get; set; }
+
+
         /// <summary>
         /// The name of the Product.
-        /// </summary>   
-        public string name 
-        {
-            get { return _Name; }
-            set 
-            {
-                _Name = value;
-                update("name");
-            }
-        }
-        
-        private string _Manufacturer;
+        /// </summary>      
+        public string name { get; set; }
+
+
         /// <summary>
         /// The manufacturer of the Product.
         /// </summary>
-        public string manufacturer
-        {
-            get { return _Manufacturer; }
-            set
-            {
-                _Manufacturer = value;
-                update("manufacturer");
-            }
-        }
+        public string manufacturer { get; set; }
 
-        private float _Cost;
+
         /// <summary>
         /// The cost of the Product.
         /// </summary>
-        public float cost
-        {
-            get { return _Cost; }
-            set
-            {
-                _Cost = value;
-                update("cost");
-            }
-        }
+        public float cost { get; set; }
 
-        private bool[] _HealthRecom;
+
         /// <summary>
         /// The health recommendation of the Product.
         /// </summary>
-        public bool[] healthRecom //= new bool[4]    // natran,sugar,shuman ravuy,green
-        {
-            get { return _HealthRecom; }
-            set
-            {
-                _HealthRecom = value;
-                update("healthRecom");
-            }
-        }
+        public bool natran { get; set; }
 
-        private double _Weight;
+
+        /// <summary>
+        /// The health recommendation of the Product.
+        /// </summary>
+        public bool sugar { get; set; }
+
+
+        /// <summary>
+        /// The health recommendation of the Product.
+        /// </summary>
+        public bool saturatedFat { get; set; }
+
+
+        /// <summary>
+        /// The health recommendation of the Product.
+        /// </summary>
+        public bool green { get; set; }
+
+
         /// <summary>
         /// The weight of the Product.
         /// </summary>
-        public double weight
-        {
-            get { return _Weight; }
-            set
-            {
-                _Weight = value;
-                update("weight");
-            }
-        }
+        public double weight { get; set; }
 
-        private string _ImagePath;
+
         /// <summary>
         /// The path of the image of the Product.
         /// </summary>
-        public string imagePath
-        {
-            get { return _ImagePath; }
-            set
-            {
-                _ImagePath = value;
-                update("imagePath");
-            }
-        }
+        public string imagePath { get; set; }
 
-        [XmlIgnore]
-        private int _Amount = 1;
+
         /// <summary>
         /// The amount of the Product.
         /// </summary>
-        [XmlIgnore]
-        public int amount
-        {
-            get { return _Amount; }
-            set
-            {
-                if (value >= 0)
-                {
-                    _Amount = value;
-                    update("amount");
-                }
-            }
-        }
+        [NotMapped]
+        public int amount { get; set; }
+                
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public categorieType categorie { get; set; }
 
-        /// <summary>
-        /// Updating the value with the "PropertyChanged".
-        /// </summary>
-        /// <param name="propName"> The name of the property that we change. </param>
-        private void update(string propName)
-        {
-            if (PropertyChanged != null)                
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
 
         /// <summary>
         /// the fuul constructor of Product class.
@@ -156,16 +90,19 @@ namespace BE
         /// <param name="healthRecom"> The health recommendation of the Product. </param>
         /// <param name="weight"> The weight of the Product. </param>
         /// <param name="imagePath"> The path of the image of the Product. </param>
-        public Product(int id, string name, string manufacturer, float cost, bool[] healthRecom, double weight, string imagePath)
-        {                     
-            healthRecom = new bool[4];
+        public Product(int id, string name, string manufacturer, float cost, bool natran, bool sugar, bool saturatedFat, bool green, double weight, string imagePath, categorieType categorie)
+        {
             this.id = id;
             this.name = name;
             this.manufacturer = manufacturer;
             this.cost = cost;
-            this.healthRecom = healthRecom;
+            this.natran = natran;
+            this.sugar = sugar;
+            this.saturatedFat = saturatedFat;
+            this.green = green;
             this.weight = weight;
             this.imagePath = imagePath;
+            this.categorie = categorie;
         }
 
         /// <summary>
